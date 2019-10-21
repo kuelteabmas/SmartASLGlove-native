@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, } from 'react-native';
 
-import displayDataComp from '../components/'
+import DisplayDataComp from '../components/displayDataComp'
+import Btexp from '../components/btexp'
+
 
 class SignsToVoiceTextScreen extends React.Component {
 
@@ -10,7 +12,7 @@ class SignsToVoiceTextScreen extends React.Component {
         return(
             <View style={styles.main}>                
                 {/** Component that displays data read from gyro data from BT serial interface on Rpi */}
-                <displayDataComp />
+                <Btexp />
             </View>
         )
     }

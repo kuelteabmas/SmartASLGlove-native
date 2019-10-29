@@ -1,76 +1,134 @@
-import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, NativeAppEventEmitter } from 'react-native';
+// import React from 'react';
+// import { View, StyleSheet, Text, ToastAndroid } from 'react-native';
 
-import BleManager from 'react-native-ble-manager';
+// import BluetoothSerial from 'react-native-bluetooth-serial';
 
-// Start BleManager lib
-BleManager.start()
-  .then(() => {
-    // Success code
-    console.log('Module initialized');
-  })
-  .catch(() => {
-    console.error("Failed to start module");
-  });
+// class DisplayDataComp extends React.Component {
+//     constructor(props) {
+//         super(props)
+//         this.events = null
+//         this.state = {
+//             isEnabled: null,
+//             device: null,
+//             devices: [],
+//             scanning: false,
+//             processing: false,
+//         }
+//     }
 
-  
+//     async componentDidMount() {
+//         this.events = this.props.events
 
-function getConnectedPeriper() {
-    BleManager.getConnectedPeripherals([])
-    .then((peripheralsArray) => {
-        // print connected devices 
-        console.log('Connected peripherals: ' + peripheralsArray.length);
-    })
-}
+//         try {
+//             const [isEnabled, devices] = await Promise.all[(
+//                 BluetoothSerial.isEnabled(),
+//                 BluetoothSerial.isConnected()
+//             )]
 
-class DisplayDataComp extends React.Component { 
-    constructor() {
-        super()
+//             this.setState({
+//                 isEnabled,
+//                 devices: devices.map(device => ({
+//                     ...device,
+//                     paired: true,
+//                     connected: false
+//                 }))
+//             })
+//         } catch (e) {
+//             // ToastAndroid.show(e.message, ToastAndroid.SHORT, ToastAndroid.BOTTOM)
+//             ToastAndroid.show('Not enabled not connected', ToastAndroid.SHORT, ToastAndroid.BOTTOM)
+//         }
+        
+        
+//         this.events.on("bluetoothEnabled", () => {
+//             Toast.showShortBottom("Bluetooth enabled");
+//             this.setState({ isEnabled: true });
+//         });
 
-    //     this.state = {
-    //         gyroData: [],
-    //         accerloData: [],
-    //         adcData: []
-    //     }
-    //     this.btStatus = this.btStatus.bind(this)
+//         this.events.on("bluetoothDisabled", () => {
+//             Toast.showShortBottom("Bluetooth disabled");
+//             this.setState({ isEnabled: false });
+//         });
 
-    }
+//         this.events.on("connectionSuccess", ({ device }) => {
+//             if (device) {
+//                 Toast.showShortBottom(
+//                     `Device ${device.name}<${device.id}> has been connected`
+//                 );
+//             }
+//         });
 
-    // // get MAC 
+//         this.events.on("connectionFailed", ({ device }) => {
+//             if (device) {
+//                 Toast.showShortBottom(
+//                     `Failed to connect with device ${device.name}<${device.id}>`
+//                 );
+//             }
+//         });
 
+//         this.events.on("connectionLost", ({ device }) => {
+//             if (device) {
+//                 Toast.showShortBottom(
+//                     `Device ${device.name}<${device.id}> connection has been lost`
+//                 );
+//             }
+//         });
 
-    // handleChange(event) {
-    //     this.setState({
-    //         readData: ''
-    //     })
-    // }
+//         this.events.on("data", result => {
+//             if (result) {
+//                 const { id, data } = result;
+//                 console.log(`Data from device ${id} : ${data}`);
+//             }
+//         });
 
-    // componentDidMount() {
-    //     NativeAppEventEmitter.addListener('BleManagerDIscover', data) => {
-    //         console.log(data)
-    //     }
-    // }
+//         this.events.on("error", e => {
+//             if (e) {
+//                 console.log(`Error: ${e.message}`);
+//                 Toast.showShortBottom(e.message);
+//             }
+//         });
+        
+//         toggleBluetooth = async value => {
+//             try {
+//                 if (value) {
+//                     await BluetoothSerial.enable();
+//                 } else {
+//                     await BluetoothSerial.disable();
+//                 }
+//             } catch (e) {
+//                 Toast.showShortBottom(e.message);
+//             }
+//         };
 
+//     }
 
-    render() {
-        return(
-            <View 
-                style={styles.main}
-                >                   
-                {/** Component that displays data read from gyro data from BT serial interface on Rpi */}
-                {getConnectedPeriper()}
-                <Text>{}</Text>
-            </View>
-        )
-    }
-}
+//     render() {
+//         const { isEnabled, scanning, processing, device, devices} = this.state
+//         return (
+//             <View
+//                 style={styles.main}
+//             >
+//                 {/** Component that displays data read from gyro data from BT serial interface on Rpi */}
+//                 <Text></Text>
+//                     <View style={styles.enableInfoWrapper}>
+//                         <Text style={{ fontSize: 14, color: "#fff", paddingRight: 10 }}>
+//                             {isEnabled ? "ON" : "OFF"}
+//                         </Text>
+//                         <Switch onValueChange={this.toggleBluetooth} value={isEnabled} />
+//                     </View>            
+//                 </View>
+//         )
+//     }
+// }
 
-const styles = StyleSheet.create({
-    main: {
-        flex: 1,
-        justifyContent: 'center',
-        // flexDirection: 'column'
-    }
-});
+// const styles = StyleSheet.create({
+//     main: {
+//         flex: 1,
+//         justifyContent: 'center',
+//         // flexDirection: 'column'
+//     }
+// });
 
-export default DisplayDataComp;
+// export default withSubscription({
+//     subscriptionName: 'events',
+//     destroyOnWillUnmount: true,
+// })(MyComponent);;

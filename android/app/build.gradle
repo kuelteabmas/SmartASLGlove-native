@@ -163,7 +163,7 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
-    // applicationVariants are e.g. debug, release
+
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
             // For each separate APK per architecture, set a unique version code as described here:
@@ -181,7 +181,8 @@ android {
 
 dependencies {
     // implementation project(':react-native-bluetooth-serial-next')
-    implementation project(':react-native-ble-manager')
+    // implementation project(':react-native-ble-manager')
+    // implementation project(':react-native-bluetooth-serial')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
 

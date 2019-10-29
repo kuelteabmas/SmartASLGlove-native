@@ -1,8 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Button } from 'react-native';
 
 class HomeScreen extends React.Component {
 
+    static navigationOptions = {
+        title: 'Dashboard',
+      };
 
     render() {
         return(
@@ -10,6 +13,7 @@ class HomeScreen extends React.Component {
                 <TouchableOpacity
                         style={[ styles.button, {backgroundColor: 'orange'}]}
                         title='Translate Signs To Text/Voice'
+                        onPress={() => this.props.navigation.navigate('signTranslationScreen')}
                     >
                         <Text style={styles.textbutton}>Translate Signs To Text/Voice</Text>
                 </TouchableOpacity>
@@ -20,6 +24,10 @@ class HomeScreen extends React.Component {
                     >
                         <Text style={[styles.textbutton, {color: 'white'}]}>Voice To Text</Text>
                 </TouchableOpacity>
+                <Button
+          title="Go ack"
+          onPress={() => this.props.navigation.goBack()}
+        />
             </View>
         )
     }
@@ -46,7 +54,7 @@ const styles = StyleSheet.create({
         shadowColor: 'black',
         shadowOpacity: 0.2,
         shadowOffset: { width: 2, height: 2 },
-    },
+    }
 });
 
 export default HomeScreen;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, BackHandler, Alert } from 'react-native';
 
 const userInfo= {email: 'admin', password: '12345'}
 
@@ -11,6 +11,19 @@ class LoginScreen extends React.Component {
       password: ''
     }
 
+  }
+  
+  componentWillMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  onBackPress = () => {
+    this.props.navigation.navigate('mainLoginScreen')
+    return true; // Return true to enable back button over ride.
   }
   
   _onLogin = async () => {

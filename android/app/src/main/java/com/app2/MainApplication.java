@@ -5,7 +5,7 @@ import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 // import com.nuttawutmalee.RCTBluetoothSerial.*;
-// import com.rusel.RCTBluetoothSerial.*;
+import com.rusel.RCTBluetoothSerial.*;
 // import it.innove.BleManagerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;

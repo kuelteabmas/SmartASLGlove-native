@@ -1,20 +1,34 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, BackHandler, Alert} from 'react-native';
 
 import DisplayDataComp from '../components/displayDataComp'
 // import Btexp from '../components/btexp'
-// import btserial from '../components/btserial'
+// import btserialnext from '../components/btserialnext'
+import BluetoothSerialExample from '../components/btserial'
 
 
 class SignsToVoiceTextScreen extends React.Component {
 
+    componentWillMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+        }
+
+        componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+        }
+
+        onBackPress = () => {
+            this.props.navigation.navigate('homeScreen')
+            return true; // Return true to enable back button over ride.
+        }
+      
 
     render() {
         return(
             <View style={styles.main}>                
                 {/** Component that displays data read from gyro data from BT serial interface on Rpi */}
                 {/* <DisplayDataComp /> */}
-                <Text>Hey!</Text>
+                <BluetoothSerialExample />
             </View>
         )
     }

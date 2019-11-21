@@ -1,11 +1,24 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Button } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Button, BackHandler, Alert } from 'react-native';
 
 class HomeScreen extends React.Component {
 
     static navigationOptions = {
         title: 'Dashboard',
       };
+
+    componentWillMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+    }
+
+    onBackPress = () => {
+        this.props.navigation.navigate('mainLoginScreen')
+        return true; // Return true to enable back button over ride.
+    }
 
     render() {
         return(
@@ -25,8 +38,8 @@ class HomeScreen extends React.Component {
                         <Text style={[styles.textbutton, {color: 'white'}]}>Voice To Text</Text>
                 </TouchableOpacity>
                 <Button
-          title="Go ack"
-          onPress={() => this.props.navigation.goBack()}
+          title="Go back"
+          onPress={() => this.props.navigation.goBack}
         />
             </View>
         )

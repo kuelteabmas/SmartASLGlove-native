@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
-const userInfo= {email: 'admin', password: '12345'}
+const userInfo= {username: 'admin', email: 'admin@saslglove.com', password: '123'}
 
 class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      username:'',
       email: '', 
       password: ''
     }
@@ -15,7 +16,7 @@ class LoginScreen extends React.Component {
   
   _onLogin = async () => {
     console.log("Login Button pressed");
-    if (userInfo.email === this.state.email && userInfo.password === this.state.password) {
+    if (userInfo.username === this.state.username && userInfo.password === this.state.password) {
       this.props.navigation.navigate('homeScreen')
     } else {
       alert("Incorrect Email Address and/or Password")
@@ -26,12 +27,20 @@ class LoginScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Login</Text>
-        <TextInput 
+        {/* <TextInput 
           style={styles.input} 
           placeholder="Email Address"
           placeholderTextColor="black"
-          onChangeText={(email => this.setState({email}) )}
+          onChangeText={(userid => this.setState({userid}) )}
           value={this.state.email}
+        /> */}
+
+        <TextInput 
+          style={styles.input} 
+          placeholder="Username"
+          placeholderTextColor="black"
+          onChangeText={(username => this.setState({username}) )}
+          value={this.state.username}
         />
         <TextInput 
           style={styles.input} 

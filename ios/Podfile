@@ -34,6 +34,13 @@ target 'App2' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+<<<<<<< Updated upstream
+=======
+  pod 'react-native-ble-manager', :path => '../node_modules/react-native-ble-manager'
+
+
+
+>>>>>>> Stashed changes
   target 'App2Tests' do
     inherit! :search_paths
     # Pods for testing

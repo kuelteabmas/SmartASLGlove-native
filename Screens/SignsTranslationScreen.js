@@ -1,5 +1,14 @@
 import React from 'react';
+<<<<<<< Updated upstream
 import { View, StyleSheet, Text, TouchableOpacity, } from 'react-native';
+=======
+import { View, StyleSheet, Text, TouchableOpacity, BackHandler, Alert} from 'react-native';
+
+import DisplayDataComp from '../components/displayDataComp'
+// import Btexp from '../components/btexp'
+// import btserialnext from '../components/btserialnext'
+import { PairingSettingsComp } from '../components/btserial'
+>>>>>>> Stashed changes
 
 import displayDataComp from '../components/'
 
@@ -10,7 +19,12 @@ class SignsToVoiceTextScreen extends React.Component {
         return(
             <View style={styles.main}>                
                 {/** Component that displays data read from gyro data from BT serial interface on Rpi */}
+<<<<<<< Updated upstream
                 <displayDataComp />
+=======
+                {/* <DisplayDataComp /> */}
+                <BluetoothSerial />
+>>>>>>> Stashed changes
             </View>
         )
     }

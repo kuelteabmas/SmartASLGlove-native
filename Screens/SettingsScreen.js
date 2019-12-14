@@ -1,24 +1,45 @@
 import React from 'react';
-import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Button, TouchableOpacity, BackHandler } from 'react-native';
+import PairingSettingsComp from '../components/btserial'
 
 class Settings extends React.Component {
+
+    componentWillMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+    }
+
+    onBackPress = () => {
+        this.props.navigation.navigate('homeScreen')
+        return true; // Return true to enable back button over ride.
+    }
+
+
     render() {
         return(
             <View style={styles.main}>
-                 
+                <Text style={styles.settingSubListTitle1}>
+                    General
+                </Text>
                 <View style={styles.settingOptionView}>
                     <TouchableOpacity 
-                        style={styles.settingBtn} >
-                            <Text style={styles.settingText}>
+                        style={styles.settingBtn} 
+                        >
+                            <Text style={styles.subSettingBtn}>
                                 Profile Settings
                             </Text>
                     </TouchableOpacity>
                 </View>
-     
+
                 <View style={styles.settingOptionView}>
                     <TouchableOpacity 
-                        style={styles.settingBtn} >
-                            <Text style={styles.settingText}>
+                        style={styles.settingBtn} 
+                        onPress={() => this.props.navigation.navigate('pairingSettingsScreen')}
+                        >
+                            <Text style={styles.subSettingBtn}>
                                 Pairing Settings
                             </Text>
                     </TouchableOpacity>
@@ -26,7 +47,7 @@ class Settings extends React.Component {
                 
                 <View style={styles.settingOptionView}>
                     <TouchableOpacity 
-                        style={styles.settingBtn} >
+                        style={styles.subSettingBtn} >
                             <Text style={styles.settingText}>
                                 Check for Updates
                             </Text>
@@ -81,6 +102,14 @@ const styles = StyleSheet.create({
     }, 
     settingSubListTitle: {
         paddingTop: 20,
+        fontWeight: 'bold',
+        borderBottomWidth: 0.5,
+        borderColor: 'grey',
+        justifyContent: 'center',
+    }, 
+    settingSubListTitle1: {
+        paddingTop: 0,
+        marginBottom:10,
         fontWeight: 'bold',
         borderBottomWidth: 0.5,
         borderColor: 'grey',
